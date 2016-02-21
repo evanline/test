@@ -1,19 +1,10 @@
 <?php
 require_once("connection.php");
 
-function vaknamen_ophalen(){
-    $stmt = "SELECT 'code' from vakken";
-    $stmt = $con->prepare ($sql);
-    $stmt->Execute();
-    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    echo $result;
-}
-
-
 if (!isset($_POST['submit'])){
 $_SESSION["code"] = NULL;
 $_SESSION["cijfer"] = NULL;
-$_SESSION["gehaalde EC"] = NULL;
+$_SESSION["gehaalde_EC"] = NULL;
 $_SESSION["leerlingnummer"] = NULL;
 
 $code ="";
@@ -25,12 +16,12 @@ if(isset($_POST['submit'])){
 
         $code = filter_input(INPUT_POST, "code", FILTER_SANITIZE_STRING);
         $cijfer = filter_input(INPUT_POST, "cijfer", FILTER_SANITIZE_NUMBER_INT);
-        $gehaalde_EC = filter_input(INPUT_POST, "gehaalde EC", FILTER_SANITIZE_NUMBER_INT);
+        $gehaalde_EC = filter_input(INPUT_POST, "gehaalde_EC", FILTER_SANITIZE_NUMBER_INT);
         $leerlingnummer = filter_input(INPUT_POST, "leerlingnummer", FILTER_SANITIZE_STRING);
 
         $_SESSION["code"] = $code;
         $_SESSION["cijfer"] = $cijfer;
-        $_SESSION["gehaalde EC"] = $gehaalde_EC;
+        $_SESSION["gehaalde_EC"] = $gehaalde_EC;
         $_SESSION["leerlingnummer"] = $leerlingnummer;
 
         //errors definieren
@@ -78,8 +69,10 @@ if(isset($_POST['submit'])){
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
                 
-                    ?> <select><?php 
+                    
                         $alle_vakken = $stmt->fetch();
+                        ?> <select name = "code">
+                            <option value='none'></option> <?php 
                         foreach ($alle_vakken as $vak) {
                             ?>   <option value = '<?php echo "$vak" ?>' > <?php echo "$vak" ?> </option>";
                         <?php    }  ?>
