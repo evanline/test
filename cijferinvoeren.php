@@ -77,12 +77,13 @@ if(isset($_POST['submit'])){
                 $stmt->Execute();
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-                if($stmt->rowCount() > 0){
+                
                     ?> <select><?php 
-                        foreach ($stmt as $vak){
+                        $alle_vakken = $stmt->fetch();
+                        foreach ($alle_vakken as $vak) {
                             ?>   <option value = '<?php echo "$vak" ?>' > <?php echo "$vak" ?> </option>";
                         <?php    }  ?>
-                        <?php } ?>
+                        
                     </select>
                 
             <p class='gegevens'>Vakcijfer:</p>
