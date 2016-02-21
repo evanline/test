@@ -38,7 +38,11 @@ if(isset($_POST['submit'])){
             $error[3] = "Vul een leerlingnummer in:";
         }
         if (empty($error)){
-             header("location: congrats.php");
+            
+            $sql = "INSERT INTO cijfer(vakcode, leerlingnummer, cijfer, gehaaldeEC) VALUES ('$code', '$leerlingnummer', '$cijfer', '$gehaalde_EC')";
+            $stmt = $con->prepare($sql);
+            $stmt->execute();
+            header("location: congrats.php");
         }
         //sql voor plaatsen
         //$sql = "INSERT INTO vakken(vakcode, cijfer, EC, leerlingnummer) VALUES ('$code', '$cijfer', '$EC', '$leerlingnummer')";
