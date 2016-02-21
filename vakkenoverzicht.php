@@ -17,47 +17,14 @@
         		
         		<?php
         			require_once("connection.php");
-        			if (isset($_GET['gb'])){
-                                    //invullen informatie
-                                    echo"
-                                    <form action = '' method = 'POST'>
-                                    Code:<br>
-                                    <input type= 'text' name = 'code'><br>
-                                    Naam vak:<br>
-                                    <input type= 'text' name = 'naam'><br>
-                                    Aantal EC:<br>
-                                    <input type= 'text' name = 'EC'><br>
-                                    Periode:<br>
-                                    <input type= 'text' name = 'periode'><br>
-                                    <input type= 'submit' name= 'Toevoegen'>
-                                    </form>
-                                    ";
-
-                                    	if(isset($_POST['Toevoegen'])){
-                                        	//variabelen definieren
-                                        	$code = $_POST['code'];
-                                        	$naam = $_POST['naam'];
-                                        	$EC   = $_POST['EC'];
-                                        	$periode = $_POST['periode'];
-                                        
-                                        	//sql voor plaatsen
-                                        	$sql = "INSERT INTO vakken(vakcode, naam, EC, periode) VALUES ('$code', '$naam', '$EC', '$periode')";
-                                        	$stmt = $con->prepare($sql);
-                                        	$stmt->execute();
-                                        	echo "Het vak is toegevoegd. <a href= 'vakkenresultaten.php'>Terug</a>";
-                                    	}
-                                    }else{
+        			
                                         //SQL voor ophalen informatie
-                                        
-                                            # code...
-                                        
-                                        $sql = "SELECT 'v.code', naam, EC, cijfer, gehaaldeEC  FROM vakken v  INNER JOIN cijfer c ON 'v.code'='c.code' WHERE periode = 'een' ORDER BY naam DESC";
+                                        $sql = "SELECT 'v.code', naam, EC, cijfer, gehaaldeEC  FROM vakken AS v  INNER JOIN cijfer AS c ON 'v.code'='c.code' WHERE periode = 'een' ORDER BY naam DESC";
                         				$stmt = $con->prepare ($sql);
                         				$stmt->Execute();
                         				$stmt->setFetchMode(PDO::FETCH_ASSOC);
-
-
-                                        	if($stmt->rowCount() > 0){
+                                            
+                                            if($stmt->rowCount() > 0){
                         						while($row = $stmt->fetch()){
                         						echo '
                         						<ul>
@@ -70,7 +37,6 @@
                                                 ';
                                             }
                                         }
-                                    };
                                 ?>
         	</div> <!--einde periode1-->
         	<div id= "periode2">
