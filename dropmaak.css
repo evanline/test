@@ -1,0 +1,81 @@
+/*algeheel*/
+body{
+    background: #480000 ;
+     
+}
+
+a{
+    color: brown;
+}
+/*hoofdpagina */
+.wrapper{
+    ;
+}
+
+#persoongegevens{
+    display: inline-block;
+    vertical-align:top;
+    background: ;
+}
+
+#foto{
+    float: right;
+    display: inline-block;
+    vertical-align:top;
+    right: 0px;
+}
+
+#scholen{
+    display: inline-block;
+    vertical-align:top;
+    background: ;
+}
+
+#hobby{
+    float:right;
+}
+
+#bijbaan{
+    
+}
+
+.titel{
+    color: darkgrey;
+}
+
+.gegevens{
+    color: white;
+}
+
+#copyright{
+    float: bottom;
+    background-color: grey;
+    color: black;
+    text-align: center;
+    font-size: '15';
+}
+/*vakkenresultaten */
+
+#periode1{
+    color: white;
+}
+
+#periode2{
+    
+}
+
+#periode3{
+    
+}
+
+#periode4{
+    
+}
+
+/*vaktoevoegen*/
+.toevoeging{
+    float: center;
+}
+
+
+/*Amanda Pongers S1092821
