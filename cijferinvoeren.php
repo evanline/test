@@ -72,8 +72,6 @@ if(isset($_POST['submit'])){
                 $stmt->Execute();
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-                
-                    
                         $alle_vakken = $stmt->fetch();
                         ?> <select name = "code">
                             <option value='none'></option> <?php 

@@ -3,6 +3,36 @@
         <title>Just me, myself and I</title>
         <LINK HREF="dropmaak.css" REL="stylesheet" TYPE="text/css">
     </head>
+<?php
+    if (isset($_POST['verwijder_definitief'])){
+        $verwijderende_vakken = $_POST['te_verwijderen_vak'];
+        
+        foreach ($verwijderende_vakken as $vak) {
+        $sql = "DELETE from vakken where naam = ?";
+        $stmt = $con->prepare ($sql);
+        $stmt->bind_param('s', $vak);
+        $stmt->Execute();
+        }
+    }
+
+    if (isset($_POST['verwijder_vakken'])){
+        $sql = "SELECT distinct naam from vakken";
+        $stmt = $con->prepare ($sql);
+        $stmt->Execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $vaknamen = $stmt->fetch();
+
+        ?>
+        <form method='post' action='vakkenoverzicht.php'>
+            <?php foreach ($vaknamen as $naam){?>
+                <input type='checkbox' name='te_verwijderen_vak' value='<php $naam ?>'> <?php echo"$naam" ?> </input>
+            <?php } ?>
+            <input type='submit' name='verwijder_definitief' value='verwijder definitief'>
+        </form>
+    }
+
+
+?>
     <body>
     	<h2 class= "titel">Mijn studentgegevens zijn:</h2>
     	<p class="gegevens">	
@@ -34,11 +64,12 @@
                             						<td><b>Cijfer: </b>' . $row['cijfer'] . '<br></td>
                             						<td><b>Behaalde EC: </b>'.$row['gehaaldeEC'].'<br></td>
                             					</td>
-                                                <hr>
+                                                <br>
                                                 ';
                                             }
                                         }
                                 ?>
+                                <hr>
         	</div> <!--einde periode1-->
         	<div id= "periode2">
                 <H2 class= "titel"> Periode 2</H2>
@@ -122,6 +153,8 @@
                                 ?>
         	</div><!--einde periode4-->
         </div><!--einde wrapper2-->
+        <input type='submit' name='verwijder_vakken' value='verwijder vakken'>
+
     </body>
 </html>
 
