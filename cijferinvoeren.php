@@ -3,9 +3,9 @@ require_once("connection.php");
 
 function vaknamen_ophalen(){
     $stmt = "SELECT 'code' from vakken";
-    $stmt = $con->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt = $con->prepare ($sql);
+    $stmt->Execute();
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
     echo $result;
 }
 
@@ -69,16 +69,20 @@ if(isset($_POST['submit'])){
 
             <p class='gegevens'>Code:</p>
             <p class='gegevens'><?php
-            if (isset($_POST['submit']) AND isset($error[0])){echo $error[0];} 
-
-            $result = vaknamen_ophalen();
-            ?> 
-            <select>
-                <?php foreach ($result as $vak){
-                 ?>   <option value= <?php echo "$vak" ?> > <?php echo "$vak" ?> </option>";
-            <?php    }  ?>
-            </select>
-            
+            if (isset($_POST['submit']) AND isset($error[0])) { echo $error[0]; } 
+ 
+            //$result = vaknamen_ophalen();
+                $stmt = "SELECT 'vakcode' from vakken";
+                $stmt = $con->prepare ($sql);
+                $stmt->Execute();
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                if($stmt->rowCount() > 0){
+                    ?> <select><?php 
+                        foreach ($result as $vak){
+                            ?>   <option value= <?php echo "$vak" ?> > <?php echo "$vak" ?> </option>";
+                        <?php    }  ?>
+                    </select>
+                <?php } ?>
             <p class='gegevens'>Vakcijfer:</p>
             <p class='gegevens'><?php
             if (isset($_POST['submit']) AND isset($error[1])){echo $error[1];} 
