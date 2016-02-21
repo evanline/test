@@ -42,9 +42,10 @@ if(isset($_POST['submit'])){
         		);
         }
         //sql voor plaatsen
-        //$sql = "INSERT INTO vakken(vakcode, naam, EC, periode) VALUES ('$code', '$naam', '$EC', '$periode')";
-        //$stmt = $con->prepare($sql);
-        //$stmt->execute();
+        $sql = "INSERT INTO vakken(vakcode, naam, EC, periode) VALUES ('$code', '$naam', '$EC', '$periode')";
+        $stmt = $con->prepare($sql);
+        $stmt->execute();
+        //$stmt->setFetchMode(PDO::FETCH_ASSOC);
     }
 
 
