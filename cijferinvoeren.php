@@ -79,9 +79,8 @@ if(isset($_POST['submit'])){
 
                 if($stmt->rowCount() > 0){
                     ?> <select><?php 
-                    if (empty($stmt)){echo "vakcode is leeg";}
                         foreach ($stmt as $vak){
-                            ?>   <option value= <?php echo "$vak" ?> > <?php echo "$vak" ?> </option>";
+                            ?>   <option value = '<?php echo "$vak" ?>' > <?php echo "$vak" ?> </option>";
                         <?php    }  ?>
                         <?php } ?>
                     </select>
