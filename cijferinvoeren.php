@@ -47,7 +47,7 @@ if(isset($_POST['submit'])){
             $error[3] = "Vul een leerlingnummer in:";
         }
         if (empty($error)){
-             header("location: cijferinvoeren.php");
+             header("location: congrats.php");
         }
         //sql voor plaatsen
         //$sql = "INSERT INTO vakken(vakcode, cijfer, EC, leerlingnummer) VALUES ('$code', '$cijfer', '$EC', '$leerlingnummer')";
@@ -64,7 +64,7 @@ if(isset($_POST['submit'])){
     </head>
     <body>
         <div class= "toevoeging">
-            <form method="post" action="vaktoegevoegd.php">
+            <form method="post" action="cijferinvoeren.php">
         <h3 class="titel">cijfer invoeren</h3>
 
             <p class='gegevens'>Code:</p>
