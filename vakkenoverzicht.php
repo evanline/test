@@ -29,8 +29,9 @@
             <?php } ?>
             <input type='submit' name='verwijder_definitief' value='verwijder definitief'>
         </form>
+        <?php
     }
-
+?>
 
 ?>
     <body>
@@ -153,6 +154,7 @@
                                 ?>
         	</div><!--einde periode4-->
         </div><!--einde wrapper2-->
+        <form method='post' action='vakkenoverzicht.php'>
         <input type='submit' name='verwijder_vakken' value='verwijder vakken'>
 
     </body>
