@@ -50,7 +50,7 @@
         			require_once("connection.php");
         			
                                         //SQL voor ophalen informatie
-                                        $sql = "SELECT v.vakcode AS v_vakcode, c.vakcode AS c_vakcode, naam, EC, cijfer, gehaaldeEC  FROM vakken AS v  LEFT JOIN cijfer AS c ON 'v_vakcode'='c_vakcode' WHERE periode = 'een' ORDER BY naam DESC";
+                                        $sql = "SELECT v.vakcode AS v_vakcode, naam, EC, cijfer, gehaaldeEC  FROM vakken AS v  LEFT JOIN cijfer AS c ON 'v.vakcode'='c.vakcode' WHERE periode = 'een' ORDER BY naam DESC";
                         				$stmt = $con->prepare ($sql);
                         				$stmt->Execute();
                         				$stmt->setFetchMode(PDO::FETCH_ASSOC);
