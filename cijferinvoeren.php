@@ -5,8 +5,10 @@ function vaknamen_ophalen(){
     $stmt = "SELECT 'code' from vakken";
     $stmt = $con->prepare($sql);
     $stmt->execute();
-
+    $result = $stmt->get_result();
+    echo $result;
 }
+
 
 if (!isset($_POST['submit'])){
 $_SESSION["code"] = NULL;
@@ -68,7 +70,6 @@ if(isset($_POST['submit'])){
             <p class='gegevens'>Code:</p>
             <p class='gegevens'><?php
             if (isset($_POST['submit']) AND isset($error[0])){echo $error[0];} 
-            ?>
 
             $result = vaknamen_ophalen();
             ?> 
