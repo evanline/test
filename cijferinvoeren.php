@@ -72,17 +72,20 @@ if(isset($_POST['submit'])){
             if (isset($_POST['submit']) AND isset($error[0])) { echo $error[0]; } 
  
             //$result = vaknamen_ophalen();
-                $stmt = "SELECT 'vakcode' from vakken";
+                $sql = "SELECT vakcode from vakken";
                 $stmt = $con->prepare ($sql);
                 $stmt->Execute();
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
                 if($stmt->rowCount() > 0){
                     ?> <select><?php 
-                        foreach ($result as $vak){
+                    if (empty($stmt)){echo "vakcode is leeg";}
+                        foreach ($stmt as $vak){
                             ?>   <option value= <?php echo "$vak" ?> > <?php echo "$vak" ?> </option>";
                         <?php    }  ?>
+                        <?php } ?>
                     </select>
-                <?php } ?>
+                
             <p class='gegevens'>Vakcijfer:</p>
             <p class='gegevens'><?php
             if (isset($_POST['submit']) AND isset($error[1])){echo $error[1];} 
